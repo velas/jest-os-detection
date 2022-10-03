@@ -1,69 +1,69 @@
 import { patch } from '../src/patch-jest'
 
-patch('linux')
+patch('web')
 
-describe('Linux test suite', () => {
+describe('Web test suite', () => {
   describe('for "it"', () => {
-    it.onLinux('it.onLinux', () => {
+    it.onWeb('it.onWeb', () => {
       expect(1).toBe(1)
     })
 
-    it.onLinux.each([1])('it.onLinux.each', value => {
+    it.onWeb.each([1])('it.onWeb.each', value => {
       expect(value).toBe(1)
     })
 
-    it.onLinux.skip.each([1])('it.onLinux.skip.each', value => {
+    it.onWeb.skip.each([1])('it.onWeb.skip.each', value => {
       throw new Error('Should not be run')
     })
 
-    it.onLinux.skip('it.onLinux.skip', () => {
+    it.onWeb.skip('it.onWeb.skip', () => {
       throw new Error('Should not be run')
     })
   })
 
   describe('for "test"', () => {
-    test.onLinux('test.onLinux', () => {
+    test.onWeb('test.onWeb', () => {
       expect(1).toBe(1)
     })
 
-    test.onLinux.each([1])('test.onLinux.each', value => {
+    test.onWeb.each([1])('test.onWeb.each', value => {
       expect(value).toBe(1)
     })
 
-    test.onLinux.skip.each([1])('test.onLinux.skip.each', value => {
+    test.onWeb.skip.each([1])('test.onWeb.skip.each', value => {
       throw new Error('Should not be run')
     })
 
-    test.onLinux.skip('test.onLinux.skip', () => {
+    test.onWeb.skip('test.onWeb.skip', () => {
       throw new Error('Should not be run')
     })
   })
 
-  describe.onLinux('describe.onLinux', () => {
+  describe.onWeb('describe.onWeb', () => {
     it('it', () => {
       expect(1).toBe(1)
     })
   })
 
-  describe.onLinux.each([1])('describe.onLinux.each', value => {
+  describe.onWeb.each([1])('describe.onWeb.each', value => {
     it('it', () => {
       expect(value).toBe(1)
     })
   })
 
-  describe.onWindows('describe.onWindows', () => {
+  describe.onIOS('describe.onIOS', () => {
     it('it', () => {
       throw new Error('Should not be run')
     })
   })
 
-  describe.onWindows.each([1, 2, 3])('describe.onWindows.each', () => {
+  describe.onIOS.each([1, 2, 3])('describe.onIOS.each', () => {
     it('it', () => {
       throw new Error('Should not be run')
     })
   })
 
-  describe.skipLinux('describe.skipLinux', () => {
+  describe.skipWeb('describe.skipWeb', () => {
     it('should not be executed', () => {
       throw new Error('should not be run')
     })

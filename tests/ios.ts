@@ -1,69 +1,69 @@
 import { patch } from '../src/patch-jest'
 
-patch('win32')
+patch('ios')
 
-describe('Windows test suite', () => {
+describe('IOS test suite', () => {
   describe('for "it"', () => {
-    it.onWindows('it.onWindows', () => {
+    it.onIOS('it.onIOS', () => {
       expect(1).toBe(1)
     })
 
-    it.onWindows.each([1])('it.onWindows.each', value => {
+    it.onIOS.each([1])('it.onIOS.each', value => {
       expect(value).toBe(1)
     })
 
-    it.onWindows.skip.each([1])('it.onWindows.skip.each', value => {
+    it.onIOS.skip.each([1])('it.onIOS.skip.each', value => {
       throw new Error('Should not be run')
     })
 
-    it.onWindows.skip('it.onWindows.skip', () => {
+    it.onIOS.skip('it.onIOS.skip', () => {
       throw new Error('Should not be run')
     })
   })
 
   describe('for "test"', () => {
-    test.onWindows('test.onWindows', () => {
+    test.onIOS('test.onIOS', () => {
       expect(1).toBe(1)
     })
 
-    test.onWindows.each([1])('test.onWindows.each', value => {
+    test.onIOS.each([1])('test.onIOS.each', value => {
       expect(value).toBe(1)
     })
 
-    test.onWindows.skip.each([1])('test.onWindows.skip.each', value => {
+    test.onIOS.skip.each([1])('test.onIOS.skip.each', value => {
       throw new Error('Should not be run')
     })
 
-    test.onWindows.skip('test.onWindows.skip', () => {
+    test.onIOS.skip('test.onIOS.skip', () => {
       throw new Error('Should not be run')
     })
   })
 
-  describe.onWindows('describe.onWindows', () => {
+  describe.onIOS('describe.onIOS', () => {
     it('it', () => {
       expect(1).toBe(1)
     })
   })
 
-  describe.onWindows.each([1])('describe.onWindows.each', value => {
+  describe.onIOS.each([1])('describe.onIOS.each', value => {
     it('it', () => {
       expect(value).toBe(1)
     })
   })
 
-  describe.onMac('describe.onMac', () => {
+  describe.onAndroid('describe.onAndroid', () => {
     it('it', () => {
       throw new Error('Should not be run')
     })
   })
 
-  describe.onMac.each([1, 2, 3])('describe.onMac.each', () => {
+  describe.onAndroid.each([1, 2, 3])('describe.onAndroid.each', () => {
     it('it', () => {
       throw new Error('Should not be run')
     })
   })
 
-  describe.skipLinux('describe.skipLinux', () => {
+  describe.skipWeb('describe.skipWeb', () => {
     it('should be executed', () => {
       expect(1).toBe(1)
     })

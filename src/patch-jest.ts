@@ -1,28 +1,29 @@
+export type Platform = 'ios' | 'android' | 'web'
 interface Command {
-  onWindows: ['win32']
-  onMac: ['darwin']
-  onLinux: ['linux']
-  skipWindows: ['linux', 'darwin']
-  skipMac: ['linux', 'win32']
-  skipLinux: ['darwin', 'win32']
+  onIOS: ['ios']
+  onAndroid: ['android']
+  onWeb: ['web']
+  skipIOS: ['android', 'web']
+  skipAndroid: ['ios', 'web']
+  skipWeb: ['ios', 'android']
 }
 
 const AVAILABLE_PLATFORMS: Command = {
-  onWindows: ['win32'],
-  onMac: ['darwin'],
-  onLinux: ['linux'],
-  skipWindows: ['linux', 'darwin'],
-  skipMac: ['linux', 'win32'],
-  skipLinux: ['darwin', 'win32'],
+  onIOS: ['ios'],
+  onAndroid: ['android'],
+  onWeb: ['web'],
+  skipIOS: ['android', 'web'],
+  skipAndroid: ['ios', 'web'],
+  skipWeb: ['ios', 'android'],
 }
 
 type MethodOperation = 'skip' | 'only'
 
 const methodOperations: MethodOperation[] = ['skip', 'only']
 
-export function patch(currentPlatform: NodeJS.Platform) {
+export function patch(currentPlatform: Platform) {
   function newDefinition<T>(method: T, expectedPlatform: keyof Command, fallbackImplem: T): T {
-    if ((AVAILABLE_PLATFORMS[expectedPlatform] as NodeJS.Platform[] | undefined)?.indexOf(currentPlatform) !== -1) {
+    if ((AVAILABLE_PLATFORMS[expectedPlatform] as Platform[] | undefined)?.indexOf(currentPlatform) !== -1) {
       return method
     } else {
       return fallbackImplem

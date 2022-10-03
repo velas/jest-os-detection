@@ -1,5 +1,4 @@
-import { platform } from 'os'
-import { patch } from './patch-jest'
+import { patch, Platform } from './patch-jest'
 
-const currentPlatform = platform()
+const currentPlatform = process.env.PLATFORM?.toLowerCase() as Platform;
 patch(currentPlatform)
